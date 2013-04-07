@@ -3,21 +3,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#000000" >
+     >
 
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Trending"
-        android:textColor="@color/televisionary_blue"
+        android:textColor="@color/televisionary_light_green"
         android:textSize="30sp" />
 
-    <GridView
-        android:id="@+id/gridView1"
+    <ListView
+        android:id="@+id/show_list_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:numColumns="3" >
-    </GridView>
+        android:layout_height="wrap_content" >
+    </ListView>
 
 </LinearLayout>

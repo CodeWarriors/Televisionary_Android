@@ -23,6 +23,8 @@ public class TelevisionaryMainView extends FragmentActivity {
 		mAdapter=   new MyAdapter(getSupportFragmentManager());
 		mPager = (ViewPager)findViewById(R.id.pager);
 		mPager.setAdapter(mAdapter);
+		
+		
 
 	}
 

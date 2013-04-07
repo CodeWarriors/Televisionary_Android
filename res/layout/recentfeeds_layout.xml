@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Recent Feeds"
-        android:textColor="@color/televisionary_blue"
+        android:textColor="@color/televisionary_light_green"
         android:textSize="30sp" />
 
 </LinearLayout>

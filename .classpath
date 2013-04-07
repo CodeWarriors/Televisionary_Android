@@ -4,5 +4,7 @@
 	<classpathentry kind="src" path="gen"/>
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
+	<classpathentry kind="lib" path="C:/Users/Sithmal/And_Projects/sdks/Android-Universal-Image-Loader-master/downloads/universal-image-loader-1.8.3.jar" sourcepath="C:/Users/Sithmal/And_Projects/sdks/Android-Universal-Image-Loader-master/downloads/universal-image-loader-1.8.3-javadoc.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sithmal/And_Projects/sdks/Android-Universal-Image-Loader-master/downloads/universal-image-loader-1.8.3-javadoc.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>
