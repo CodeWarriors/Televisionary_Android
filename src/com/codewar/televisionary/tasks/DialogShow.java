@@ -1,6 +1,6 @@
 package com.codewar.televisionary.tasks;
 
-import com.codewar.televisionary_android.R;
+import com.codewar.televisionary.R;
 
 import android.app.AlertDialog;
 import android.app.Dialog;

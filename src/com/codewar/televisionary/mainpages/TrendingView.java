@@ -2,16 +2,10 @@ package com.codewar.televisionary.mainpages;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import com.codewar.televisionary.tasks.DialogShow;
-import com.codewar.televisionary.adapters.TrendingShowsAdapter;
-import com.codewar.televisionary.jsonarrayget.HttpJsonArrayGet;
-import com.codewar.televisionary.DetailViewMain;
-import com.codewar.televisionary_android.R;
-import com.televisionary.sourcelinks.SourceLinks;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -25,6 +19,13 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+
+import com.codewar.televisionary.DetailViewMain;
+import com.codewar.televisionary.R;
+import com.codewar.televisionary.adapters.TrendingShowsAdapter;
+import com.codewar.televisionary.jsonarrayget.HttpJsonArrayGet;
+import com.codewar.televisionary.sourcelinks.SourceLinks;
+import com.codewar.televisionary.tasks.DialogShow;
 
 public class TrendingView extends Fragment {
 

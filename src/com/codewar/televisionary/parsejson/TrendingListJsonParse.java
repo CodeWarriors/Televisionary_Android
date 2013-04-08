@@ -5,7 +5,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.codewar.televisionary_android.R;
+import com.codewar.televisionary.R;
+
+
 
 
 

@@ -1,14 +1,9 @@
 package com.codewar.televisionary;
 
 import java.util.ArrayList;
+
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import com.codewar.televisionary.tasks.ImageManager;
-import com.codewar.televisionary.tasks.SingleImageLoader;
-import com.codewar.televisionary.jsonarrayget.HttpJsonArrayGet;
-import com.codewar.televisionary_android.R;
-import com.televisionary.sourcelinks.SourceLinks;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -17,6 +12,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.codewar.televisionary.jsonarrayget.HttpJsonArrayGet;
+import com.codewar.televisionary.sourcelinks.SourceLinks;
+import com.codewar.televisionary.tasks.ImageManager;
+import com.codewar.televisionary.tasks.SingleImageLoader;
 
 public class DetailViewMain extends Activity {
 	

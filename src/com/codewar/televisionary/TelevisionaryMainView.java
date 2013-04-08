@@ -1,16 +1,15 @@
 package com.codewar.televisionary;
 
-import com.codewar.televisionary.mainpages.OverviewView;
-import com.codewar.televisionary.mainpages.RecentfeedsView;
-import com.codewar.televisionary.mainpages.TrendingView;
-import com.codewar.televisionary_android.R;
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+
+import com.codewar.televisionary.mainpages.OverviewView;
+import com.codewar.televisionary.mainpages.RecentfeedsView;
+import com.codewar.televisionary.mainpages.TrendingView;
 
 public class TelevisionaryMainView extends FragmentActivity {
  

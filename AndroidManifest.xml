@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.codewar.televisionary_android"
+    package="com.codewar.televisionary"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -15,9 +15,9 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/Theme.Sherlock" >
+        android:theme="@android:style/Theme.Black" >
         <activity
-            android:name="com.codewar.televisionaryandroid.splash.SplashScreen"
+            android:name=".splash.SplashScreen"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,14 +26,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.codewar.televisionary.TelevisionaryMainView"
+            android:name="TelevisionaryMainView"
             android:label="@string/app_name" >
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
-            android:name="com.codewar.televisionary.DetailViewMain"
+            android:name="DetailViewMain"
             android:label="@string/app_name" >
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />

@@ -1,7 +1,4 @@
-package com.codewar.televisionaryandroid.splash;
-
-import com.codewar.televisionary_android.R;
-import com.codewar.televisionary.TelevisionaryMainView;
+package com.codewar.televisionary.splash;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -9,6 +6,9 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.Window;
 import android.view.WindowManager;
+
+import com.codewar.televisionary.R;
+import com.codewar.televisionary.TelevisionaryMainView;
 
 public class SplashScreen extends Activity {
 

@@ -1,4 +1,4 @@
-package com.televisionary.sourcelinks;
+package com.codewar.televisionary.sourcelinks;
 
 public class SourceLinks {
 

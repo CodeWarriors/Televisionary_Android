@@ -3,11 +3,6 @@ package com.codewar.televisionary.adapters;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import com.codewar.televisionary.tasks.ImageManager;
-import com.codewar.televisionary_android.R;
-
-
-
 import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -16,6 +11,9 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.codewar.televisionary.R;
+import com.codewar.televisionary.tasks.ImageManager;
 
 public class TrendingShowsAdapter extends ArrayAdapter<HashMap<String, Object>> {
 

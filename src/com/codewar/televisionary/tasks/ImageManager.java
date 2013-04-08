@@ -6,7 +6,7 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Stack;
 
-import com.codewar.televisionary_android.R;
+import com.codewar.televisionary.R;
 
 import android.app.Activity;
 import android.content.Context;
