@@ -1,12 +1,7 @@
-package com.android.televisionary.tasks;
+package com.codewar.televisionary.tasks;
 
-import java.io.ObjectInputStream.GetField;
-
-import android.app.Activity;
-import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.widget.Toast;
 
 public class NetworkTestTask{
 

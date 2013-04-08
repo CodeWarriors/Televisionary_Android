@@ -1,7 +1,7 @@
 package com.codewar.televisionaryandroid.splash;
 
 import com.codewar.televisionary_android.R;
-import com.codewar.televisionary_android.TelevisionaryMainView;
+import com.codewar.televisionary.TelevisionaryMainView;
 
 import android.app.Activity;
 import android.content.Intent;

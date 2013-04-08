@@ -25,7 +25,7 @@
             android:orientation="vertical" >
 
             <TextView
-                android:id="@+id/textView1"
+                android:id="@+id/show_title_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Large Text"
@@ -33,7 +33,7 @@
                 android:textSize="30sp" />
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/show_summary_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/txt_white"
@@ -43,7 +43,7 @@
                 android:textSize="15sp" />
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/show_aired_details_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 
@@ -54,7 +54,7 @@
                 
                 android:textSize="15sp" />
         </LinearLayout>
-        <include layout="@layout/epirow"/>
+
     </LinearLayout>
 
 </LinearLayout>

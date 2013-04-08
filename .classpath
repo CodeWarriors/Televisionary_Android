@@ -6,5 +6,14 @@
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
 	<classpathentry kind="lib" path="C:/Users/Sithmal/And_Projects/sdks/Android-Universal-Image-Loader-master/downloads/universal-image-loader-1.8.3.jar" sourcepath="C:/Users/Sithmal/And_Projects/sdks/Android-Universal-Image-Loader-master/downloads/universal-image-loader-1.8.3-javadoc.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Sithmal/And_Projects/sdks/Android-Universal-Image-Loader-master/downloads/universal-image-loader-1.8.3-javadoc.jar"/>
+	<classpathentry exported="true" kind="src" path="/ActionBarSherlock"/>
+	<classpathentry kind="lib" path="D:/Program Files/adt-bundle-windows-x86_64test/sdk/platforms/android-4.0.2/android.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="file:/D:/Program Files/adt-bundle-windows-x86_64test/sdk/docs/reference"/>
+		</attributes>
+		<accessrules>
+			<accessrule kind="nonaccessible" pattern="com/android/internal/**"/>
+		</accessrules>
+	</classpathentry>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

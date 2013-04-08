@@ -16,13 +16,13 @@ public class HttpJsonArrayGet {
 	public static synchronized String downloadFromServer(String... params)
 			throws Exception {
 		String retval = null;
-		String Url = "http://api.trakt.tv/show/season.json/18cced3e20fb3673dab6f5deb5dd56be/the-walking-dead/1";
 
 		HttpClient client = new DefaultHttpClient();
 		HttpGet request = new HttpGet(params[0]);
 
 		try {
 			HttpResponse responce = client.execute(request);
+
 			StatusLine status = responce.getStatusLine();
 			if (status.getStatusCode() != 200) {
 				// handle error here

@@ -923,9 +923,11 @@ containing a value of this type.
         public static final int blank=0x7f02006f;
         public static final int ic_launcher=0x7f020070;
         public static final int ic_trakt=0x7f020071;
-        public static final int splash_image=0x7f020072;
+        public static final int loading_image=0x7f020072;
+        public static final int splash_image=0x7f020073;
     }
     public static final class id {
+        public static final int aaaaaa=0x7f040036;
         public static final int abs__action_bar=0x7f040022;
         public static final int abs__action_bar_container=0x7f040021;
         public static final int abs__action_bar_subtitle=0x7f040011;
@@ -966,27 +968,26 @@ containing a value of this type.
         public static final int abs__title=0x7f04001b;
         public static final int abs__titleDivider=0x7f04001c;
         public static final int abs__up=0x7f04000b;
+        public static final int bar=0x7f040034;
         public static final int disableHome=0x7f040009;
         public static final int edit_query=0x7f040027;
-        public static final int flag=0x7f040038;
+        public static final int flag=0x7f040037;
         public static final int homeAsUp=0x7f040006;
-        public static final int imageView1=0x7f04003a;
-        public static final int image_pos=0x7f040034;
+        public static final int imageView1=0x7f040033;
+        public static final int image_pos=0x7f04003b;
         public static final int listMode=0x7f040002;
         public static final int normal=0x7f040001;
-        public static final int pager=0x7f04003b;
-        public static final int pager_title_strip=0x7f04003c;
+        public static final int pager=0x7f040038;
+        public static final int pager_title_strip=0x7f040039;
         public static final int showCustom=0x7f040008;
         public static final int showHome=0x7f040005;
         public static final int showTitle=0x7f040007;
-        public static final int show_list_view=0x7f04003e;
-        public static final int showlist=0x7f04003d;
+        public static final int show_aired_details_1=0x7f04003e;
+        public static final int show_list_view=0x7f04003a;
+        public static final int show_summary_1=0x7f04003d;
+        public static final int show_title_1=0x7f04003c;
         public static final int tabMode=0x7f040003;
         public static final int textView1=0x7f040035;
-        public static final int textView2=0x7f040036;
-        public static final int textView3=0x7f040037;
-        public static final int textView4=0x7f040039;
-        public static final int txt=0x7f040033;
         public static final int useLogo=0x7f040004;
         public static final int wrap_content=0x7f040000;
     }
@@ -1018,8 +1019,8 @@ containing a value of this type.
         public static final int abs__search_view=0x7f030015;
         public static final int abs__simple_dropdown_hint=0x7f030016;
         public static final int activity_main=0x7f030017;
-        public static final int detail_main_view=0x7f030018;
-        public static final int epirow=0x7f030019;
+        public static final int detail_image_layout=0x7f030018;
+        public static final int detail_main_view=0x7f030019;
         public static final int gridview_layout=0x7f03001a;
         public static final int overview_layout=0x7f03001b;
         public static final int progress=0x7f03001c;
@@ -1028,8 +1029,8 @@ containing a value of this type.
         public static final int sherlock_spinner_item=0x7f03001f;
         public static final int splash_layout=0x7f030020;
         public static final int televisionary_main_view=0x7f030021;
-        public static final int test=0x7f030022;
-        public static final int trending_layout=0x7f030023;
+        public static final int trending_layout=0x7f030022;
+        public static final int trending_list_item=0x7f030023;
     }
     public static final class menu {
         public static final int activity_main=0x7f0b0000;
@@ -2213,7 +2214,7 @@ containing a value of this type.
          */
         public static final int[] SherlockSpinner = {
             0x010100af, 0x01010175, 0x01010176, 0x0101017b,
-            0x01010262, 0x010102ac, 0x010102ad, 0x01010411
+            0x01010262, 0x010102ac, 0x010102ad, 0x010103ef
         };
         /**
           <p>

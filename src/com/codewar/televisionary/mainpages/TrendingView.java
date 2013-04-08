@@ -1,30 +1,19 @@
 package com.codewar.televisionary.mainpages;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.android.televisionary.tasks.DialogShow;
+import com.codewar.televisionary.tasks.DialogShow;
+import com.codewar.televisionary.adapters.TrendingShowsAdapter;
 import com.codewar.televisionary.jsonarrayget.HttpJsonArrayGet;
-import com.codewar.televisionary_android.DetailViewMain;
+import com.codewar.televisionary.DetailViewMain;
 import com.codewar.televisionary_android.R;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 import com.televisionary.sourcelinks.SourceLinks;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -35,16 +24,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 
 public class TrendingView extends Fragment {
 
 	ListView mListView;
-
-
-
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -56,19 +40,19 @@ public class TrendingView extends Fragment {
 		getLink.setTrending_shows();
 		String strUrl =getLink.getTrending_shows();
 
+		
+		
 		DownloadTask downloadTask = new DownloadTask();
-
 		downloadTask.execute(strUrl);
-		
-
-		
 		
 
 		mListView = (ListView) view.findViewById(R.id.show_list_view);
 		
 		
+		
 		mListView.setOnItemClickListener(new OnItemClickListener() {
 
+			@SuppressWarnings("unchecked")
 			@Override
 			public void onItemClick(AdapterView<?> parent, View v, int position,
 					long id) {
@@ -121,20 +105,20 @@ public class TrendingView extends Fragment {
 		}
 	}
 
-	private class ListViewLoaderTask extends
-			AsyncTask<String, Void, SimpleAdapter> {
+	public class ListViewLoaderTask extends
+			AsyncTask<String, Void, ArrayList<HashMap<String, Object>>> {
 
 		JSONArray jArray;
 
 		@Override
-		protected SimpleAdapter doInBackground(String... jsondata) {
+		protected ArrayList<HashMap<String, Object>> doInBackground(String... jsondata) {
 
-			List<HashMap<String, Object>> showList = new ArrayList<HashMap<String, Object>>();
+			ArrayList<HashMap<String, Object>> showList = new ArrayList<HashMap<String, Object>>();
 			try {
 				jArray = new JSONArray(jsondata[0]);
-				int ObjectCount = jArray.length();
+				
 
-				for (int i = 0; i < 6; i++) {
+				for (int i = 0; i < 50; i++) {
 					JSONObject jShowObject = jArray.getJSONObject(i);
 					HashMap<String, Object> Show = new HashMap<String, Object>();
 
@@ -149,11 +133,18 @@ public class TrendingView extends Fragment {
 							.getJSONObject("images");
 					String pos_url = jShowImages.getString("poster");
 
+					String old_imge_url = pos_url;
+					Log.d("New_Image_http_url", old_imge_url);
+					String[] split = old_imge_url.split(".jpg");
+					String new_img_url = null;
+					new_img_url = split[0] + "-138.jpg";
+					Log.d("New_Image_http_url", new_img_url);
+					
 					Show.put("title", title);
 					Show.put("overview", overview);
 					Show.put("tele_detail", Telecast_detail);
-					Show.put("image_url", pos_url);
-					Show.put("Image_path", R.drawable.ic_trakt);
+					Show.put("image_url", new_img_url);
+
 
 					Log.d("test", (title + overview + pos_url).toString());
 					showList.add(Show);
@@ -166,119 +157,15 @@ public class TrendingView extends Fragment {
 				e.printStackTrace();
 				Log.d("JSON Exception1", "Error is in Listview Loader");
 			}
-
-			String[] from = { "title", "overview", "tele_detail", "image_path" };
-
-			int[] to = { R.id.textView1, R.id.textView2, R.id.textView3,
-					R.id.image_pos };
-
-			SimpleAdapter adapter = new SimpleAdapter(getActivity()
-					.getBaseContext(), showList, R.layout.epirow, from, to);
-			return adapter;
+			return showList;
 		}
 
+		@Override
+		protected void onPostExecute(ArrayList<HashMap<String, Object>> result) {
+			mListView.setAdapter(new TrendingShowsAdapter(getActivity() , R.layout.trending_list_item, result));
+			
+		}
 		
-		@Override
-		protected void onPostExecute(SimpleAdapter adapter) {
-			mListView.setAdapter(adapter);
-
-			for (int i = 0; i < adapter.getCount(); i++) {
-				HashMap<String, Object> hm = (HashMap<String, Object>) adapter
-						.getItem(i);
-				String imgUrl = (String) hm.get("image_url");
-				Log.d("Image_Path", imgUrl.toString());
-				ImageLoaderTask imageLoaderTask = new ImageLoaderTask();
-
-				HashMap<String, Object> hmDownload = new HashMap<String, Object>();
-				hm.put("image_path", imgUrl);
-				hm.put("position", i);
-
-				imageLoaderTask.execute(hm);
-
-			}
-
-		}
-
 	}
-
-	private class ImageLoaderTask extends
-			AsyncTask<HashMap<String, Object>, Void, HashMap<String, Object>> {
-
-		@Override
-		protected HashMap<String, Object> doInBackground(
-				HashMap<String, Object>... hm) {
-			InputStream iStream = null;
-			String str = (String) hm[0].get("image_path");
-
-			String[] split = str.split(".jpg");
-			String img_url = null;
-			img_url = split[0] + "-138.jpg";
-			System.out.println(img_url);
-
-			Log.d("New_Image_http_url", img_url);
-			int position = (Integer) hm[0].get("position");
-
-			URL url;
-			try {
-				url = new URL(img_url);
-				Log.d("Image_http_url", img_url.toString());
-
-				HttpURLConnection urlConnection = (HttpURLConnection) url
-						.openConnection();
-
-				urlConnection.connect();
-
-				iStream = urlConnection.getInputStream();
-				Log.d("image Input Stream", iStream.toString());
-
-				File cacheDirectory = getActivity().getBaseContext().getCacheDir();
-
-				File tmpFile = new File(cacheDirectory.getAbsolutePath()
-						+ "/wpta_" + position + ".png");
-
-				FileOutputStream fOutStream = new FileOutputStream(tmpFile);
-
-				Bitmap b = BitmapFactory.decodeStream(iStream);
-
-				b.compress(Bitmap.CompressFormat.PNG, 100, fOutStream);
-
-				fOutStream.flush();
-
-				fOutStream.close();
-
-				HashMap<String, Object> hmBitmap = new HashMap<String, Object>();
-
-				hmBitmap.put("image_path", tmpFile.getPath());
-
-				hmBitmap.put("position", position);
-
-				return hmBitmap;
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			return null;
-		}
-
-		@Override
-		protected void onPostExecute(HashMap<String, Object> result) {
-
-			String path = (String) result.get("image_path");
-			Log.d("Cached Image Path", path.toString());
-
-			int position = (Integer) result.get("position");
-
-			SimpleAdapter adapter = (SimpleAdapter) mListView.getAdapter();
-
-			@SuppressWarnings("unchecked")
-			HashMap<String, Object> hm = (HashMap<String, Object>) adapter
-					.getItem(position);
-
-			hm.put("image_path", path);
-
-			adapter.notifyDataSetChanged();
-		}
-
-	}
-
 
 }

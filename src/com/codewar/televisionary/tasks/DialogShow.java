@@ -1,6 +1,5 @@
-package com.android.televisionary.tasks;
+package com.codewar.televisionary.tasks;
 
-import com.actionbarsherlock.app.SherlockDialogFragment;
 import com.codewar.televisionary_android.R;
 
 import android.app.AlertDialog;
