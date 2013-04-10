@@ -10,11 +10,13 @@ import android.support.v4.view.ViewPager;
 import com.codewar.televisionary.mainpages.OverviewView;
 import com.codewar.televisionary.mainpages.RecentfeedsView;
 import com.codewar.televisionary.mainpages.TrendingView;
+import com.navdrawer.SimpleSideDrawer;
 
 public class TelevisionaryMainView extends FragmentActivity {
  
 	private MyAdapter mAdapter;
 	private ViewPager mPager;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -23,8 +25,7 @@ public class TelevisionaryMainView extends FragmentActivity {
 		mAdapter=   new MyAdapter(getSupportFragmentManager());
 		mPager = (ViewPager)findViewById(R.id.pager);
 		mPager.setAdapter(mAdapter);
-		
-		
+			
 
 	}
 

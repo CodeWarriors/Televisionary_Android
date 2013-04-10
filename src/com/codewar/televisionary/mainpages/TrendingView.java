@@ -8,6 +8,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -26,6 +27,7 @@ import com.codewar.televisionary.adapters.TrendingShowsAdapter;
 import com.codewar.televisionary.jsonarrayget.HttpJsonArrayGet;
 import com.codewar.televisionary.sourcelinks.SourceLinks;
 import com.codewar.televisionary.tasks.DialogShow;
+import com.codewar.televisionary.tasks.SingleImageLoader;
 
 public class TrendingView extends Fragment {
 
@@ -61,6 +63,7 @@ public class TrendingView extends Fragment {
 				HashMap<String, String> o = (HashMap<String, String>) mListView
 						.getAdapter().getItem(position);
 				detailsIntent.putExtra("Show_Name", o.get("title"));
+				detailsIntent.putExtra("back_Image", o.get("backImage"));
 				startActivity(detailsIntent);
 				
 			}
@@ -133,19 +136,24 @@ public class TrendingView extends Fragment {
 					JSONObject jShowImages = jShowObject
 							.getJSONObject("images");
 					String pos_url = jShowImages.getString("poster");
+					String fan_url = jShowImages.getString("fanart");
 
 					String old_imge_url = pos_url;
-					Log.d("New_Image_http_url", old_imge_url);
 					String[] split = old_imge_url.split(".jpg");
 					String new_img_url = null;
 					new_img_url = split[0] + "-138.jpg";
-					Log.d("New_Image_http_url", new_img_url);
+
+					String old_fanart_url = fan_url;
+					String[] fan_split = old_fanart_url.split(".jpg");
+					String new_fanart_url = null;
+					new_fanart_url = split[0] + "-218.jpg";
+					
 					
 					Show.put("title", title);
 					Show.put("overview", overview);
 					Show.put("tele_detail", Telecast_detail);
 					Show.put("image_url", new_img_url);
-
+					Show.put("backImage", new_fanart_url);
 
 					Log.d("test", (title + overview + pos_url).toString());
 					showList.add(Show);
@@ -168,5 +176,7 @@ public class TrendingView extends Fragment {
 		}
 		
 	}
+	
+	
 
 }

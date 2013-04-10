@@ -4,5 +4,7 @@
     <string name="app_name">Televisionary_Android</string>
     <string name="menu_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+    <string name="wierd_shape">percentage on this</string>
+    <string name="banner_image_desc">Banner_Image_Loading</string>
 
 </resources>

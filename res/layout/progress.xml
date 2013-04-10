@@ -4,6 +4,7 @@
     android:layout_height="wrap_content"
     android:gravity="center_vertical"
     tools:context=".MainActivity"
+    style="@android:style/Theme.Dialog"
      >
 
     <ProgressBar

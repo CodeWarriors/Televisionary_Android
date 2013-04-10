@@ -16,7 +16,9 @@
     <ListView
         android:id="@+id/show_list_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content" 
+        style="@style/Sherlock.__Widget.Holo.ListView"
+       >
     </ListView>
 
 </LinearLayout>
