@@ -15,6 +15,7 @@ public class DialogShow extends DialogFragment{
         AlertDialog.Builder b = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = LayoutInflater.from(getActivity());
         View v = inflater.inflate(R.layout.progress, null);
+        b.setTitle("Updating Content");
         b.setView(v);
         b.setCancelable(true);
         Dialog d = b.create();

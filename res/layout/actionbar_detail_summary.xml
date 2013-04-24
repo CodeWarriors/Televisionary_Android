@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/ab_transparent_example"
+    android:orientation="horizontal" >
+
+    <LinearLayout
+        android:id="@+id/Ico"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true" >
+
+        <ImageView
+            android:id="@+id/btn"
+            style="@style/ActionBarIconStyle"
+            android:layout_weight="1"
+            android:src="@drawable/collections_view_as_list" />
+
+        <View
+            style="@style/DividerVertical"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp" />
+
+        <ImageView
+            android:id="@+id/imageView1"
+            style="@style/ActionBarIconStyle"
+            android:layout_weight="1"
+            android:src="@drawable/action_about" />
+
+        <View
+            style="@style/DividerVertical"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            style="@style/ActionBarIconStyle"
+            android:layout_weight="1"
+            android:src="@drawable/action_search" />
+
+        <View
+            style="@style/DividerVertical"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            style="@style/ActionBarIconStyle"
+            android:layout_weight="1"
+            android:src="@drawable/collections_go_to_today" />
+
+        <View
+            style="@style/DividerVertical"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            style="@style/ActionBarIconStyle"
+            android:layout_weight="1"
+            android:src="@drawable/action_settings" />
+    </LinearLayout>
+
+</RelativeLayout>

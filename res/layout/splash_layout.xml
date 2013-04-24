@@ -3,9 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/televisionary_dark_green"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+     >
 
     <LinearLayout
+        android:id="@+id/linearLayout1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -30,29 +32,29 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_trakt"
-            android:paddingTop="1dp" />
+            android:paddingTop="1dp"
+            android:src="@drawable/ic_trakt" />
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/imageView1"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:contentDescription="Logo"
-        android:paddingTop="50dp"
+        android:gravity="center"
+        android:orientation="vertical" >
 
-        android:src="@drawable/splash_image" />
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/televisionary_title" />
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/imageView1"
-        android:layout_centerHorizontal="true"
-        android:text="Televisionary"
-        android:textColor="@color/txt_white"
-        android:textSize="32sp" />
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/splash_image" />
+    </LinearLayout>
 
 </RelativeLayout>

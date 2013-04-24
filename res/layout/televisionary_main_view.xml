@@ -4,19 +4,26 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
+    <include
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/actionbar_detail_summary" />
+
     <android.support.v4.view.ViewPager
         android:id="@+id/pager"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent" >
+        android:layout_height="fill_parent"
+         >
+
     	<android.support.v4.view.PagerTabStrip
     	    android:id="@+id/pager_title_strip"
     	    android:layout_width="match_parent"
     	    android:layout_height="wrap_content"
     	    android:layout_gravity="top"
-    	    android:background="@color/televisionary_dark_green"
-    	    android:textColor="#fff"
+    	    android:background="@drawable/pager_strip_solid_televisionary"
+    	    android:paddingBottom="4dp"
     	    android:paddingTop="4dp"
-    	    android:paddingBottom="4dp"/>
+    	    android:textColor="@color/televisionary_light_green" />
 
     </android.support.v4.view.ViewPager>
 </LinearLayout>

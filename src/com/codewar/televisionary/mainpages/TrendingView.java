@@ -1,23 +1,31 @@
+
 package com.codewar.televisionary.mainpages;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
@@ -25,47 +33,69 @@ import com.codewar.televisionary.DetailViewMain;
 import com.codewar.televisionary.R;
 import com.codewar.televisionary.adapters.TrendingShowsAdapter;
 import com.codewar.televisionary.jsonarrayget.HttpJsonArrayGet;
+import com.codewar.televisionary.parsejson.JsonParser;
 import com.codewar.televisionary.sourcelinks.SourceLinks;
 import com.codewar.televisionary.tasks.DialogShow;
-import com.codewar.televisionary.tasks.SingleImageLoader;
+import com.codewar.televisionary.tasks.LoadFromCache;
+import com.codewar.televisionary.tasks.NetworkTestTask;
+import com.codewar.televisionary.tasks.ShowAlertDialog;
 
-public class TrendingView extends Fragment {
+public class TrendingView extends Fragment{
 
-	ListView mListView;
+	ListView	                       mListView;
+	NetworkTestTask	                   netTest;
+	ShowAlertDialog	                   alert;
+	boolean	                           isSdAvail	 = true;
+	boolean	                           isSdWriteable	= true;
+
+	ArrayList<HashMap<String, Object>>	show_list	 = null;
+
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState){
+
+		super.onActivityCreated(savedInstanceState);
+	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
-		final View view = inflater
-				.inflate(R.layout.trending_layout, container, false);
+	        Bundle savedInstanceState){
+		final View view = inflater.inflate(R.layout.trending_layout, container, false);
 
-		SourceLinks getLink = new SourceLinks();
-		getLink.setTrending_shows();
-		String strUrl =getLink.getTrending_shows();
-
-		
-		
-		DownloadTask downloadTask = new DownloadTask();
-		downloadTask.execute(strUrl);
-		
+		NetworkTestTask netTest = new NetworkTestTask(getActivity( )
+		        .getApplicationContext( ));
+		if(netTest.isNetworkAvailable( ) == true){
+			SourceLinks getLink = new SourceLinks( );
+			getLink.setTrending_shows( );
+			String strUrl = getLink.getTrending_shows( );
+			DownloadTask downloadTask = new DownloadTask( );
+			
+			downloadTask.execute(strUrl);
+			//for testing
+			//downloadTask.execute("http://192.248.12.9/~114064N/files/shows.json");
+		} else{
+			Toast.makeText(getActivity( ).getApplicationContext( ),
+			        "Network is Not Available.. Work in Offline Mode", 15000).show( );
+			LoadFromCache loadData = new LoadFromCache("tendinglist");
+			Toast.makeText(getActivity( ).getApplicationContext( ),
+			        loadData.getOfflineJson( ), 15000).show( );
+			OfflineTask offlineTask = new OfflineTask( );
+			offlineTask.execute(loadData.getOfflineJson( ));
+		}
 
 		mListView = (ListView) view.findViewById(R.id.show_list_view);
-		
-		
-		
-		mListView.setOnItemClickListener(new OnItemClickListener() {
+		mListView.setOnItemClickListener(new OnItemClickListener( ){
 
 			@SuppressWarnings("unchecked")
 			@Override
-			public void onItemClick(AdapterView<?> parent, View v, int position,
-					long id) {
-				Intent detailsIntent = new Intent(view.getContext(), DetailViewMain.class);
-				HashMap<String, String> o = (HashMap<String, String>) mListView
-						.getAdapter().getItem(position);
-				detailsIntent.putExtra("Show_Name", o.get("title"));
-				detailsIntent.putExtra("back_Image", o.get("backImage"));
+			public void onItemClick(AdapterView<?> parent, View v, int position, long id){
+				Intent detailsIntent = new Intent(view.getContext( ),
+				        DetailViewMain.class);
+
+				final HashMap<String, Object> show = show_list.get(position);
+
+				detailsIntent.putExtra("show_summary", show);
 				startActivity(detailsIntent);
-				
+
 			}
 		});
 
@@ -73,110 +103,67 @@ public class TrendingView extends Fragment {
 
 	}
 
-	private class DownloadTask extends AsyncTask<String, Integer, String> {
+	private class DownloadTask extends
+	        AsyncTask<String, Integer, ArrayList<HashMap<String, Object>>>{
 
-		String data = null;
-		DialogShow loadingDialog = new DialogShow();
+		String		data		  = null;
+		DialogShow	loadingDialog	= new DialogShow( );
 
 		@Override
-		protected void onPreExecute() {
-			super.onPreExecute();
-			FragmentManager fragmentManager = getFragmentManager();
+		protected void onPreExecute( ){
+			super.onPreExecute( );
+			FragmentManager fragmentManager = getFragmentManager( );
 			loadingDialog.show(fragmentManager, "Progress Dialog");
-
+			Log.d("Background Task", "OnPre Execute");
 		}
 
 		@Override
-		protected String doInBackground(String... url) {
-			try {
+		protected ArrayList<HashMap<String, Object>> doInBackground(String... url){
+
+			try{
 				data = HttpJsonArrayGet.downloadFromServer(url[0]);
-				Log.d("Background Task", data.toString());
-			} catch (Exception e) {
-				Log.d("Background Task", e.toString());
+				Log.d("Background Task", url[0].toString( ));
+				Log.d("Background Task", data.toString( ));
+			} catch(Exception e){
+				Log.d("Background Task", e.toString( ));
 			}
-			return data;
+
+			JsonParser jParser = new JsonParser(data.toString( ), 1);
+			return jParser.getTrendingListData( );
 		}
 
 		@Override
-		protected void onPostExecute(String result) {
+		protected void onPostExecute(ArrayList<HashMap<String, Object>> result){
 
-			loadingDialog.dismiss();
+			loadingDialog.dismiss( );
+			mListView.setAdapter(new TrendingShowsAdapter(getActivity( ),
+			        R.layout.trending_list_item, result));
 
-			ListViewLoaderTask listViewLoaderTask = new ListViewLoaderTask();
+			show_list = result;
 
-			listViewLoaderTask.execute(result);
-			Log.d("onPostExecute", result.toString());
 		}
 	}
 
-	public class ListViewLoaderTask extends
-			AsyncTask<String, Void, ArrayList<HashMap<String, Object>>> {
+	private class OfflineTask extends
+	        AsyncTask<String, Integer, ArrayList<HashMap<String, Object>>>{
 
-		JSONArray jArray;
+		String		data		  = null;
 
 		@Override
-		protected ArrayList<HashMap<String, Object>> doInBackground(String... jsondata) {
+		protected ArrayList<HashMap<String, Object>> doInBackground(String... url){
 
-			ArrayList<HashMap<String, Object>> showList = new ArrayList<HashMap<String, Object>>();
-			try {
-				jArray = new JSONArray(jsondata[0]);
-				
-
-				for (int i = 0; i < 50; i++) {
-					JSONObject jShowObject = jArray.getJSONObject(i);
-					HashMap<String, Object> Show = new HashMap<String, Object>();
-
-					String title = jShowObject.getString("title");
-					String overview = jShowObject.getString("overview");
-					String air_day = jShowObject.getString("air_day");
-					String air_time = jShowObject.getString("air_time");
-					String network = jShowObject.getString("network");
-					String Telecast_detail = air_day + " at " + air_time
-							+ " On " + network;
-					JSONObject jShowImages = jShowObject
-							.getJSONObject("images");
-					String pos_url = jShowImages.getString("poster");
-					String fan_url = jShowImages.getString("fanart");
-
-					String old_imge_url = pos_url;
-					String[] split = old_imge_url.split(".jpg");
-					String new_img_url = null;
-					new_img_url = split[0] + "-138.jpg";
-
-					String old_fanart_url = fan_url;
-					String[] fan_split = old_fanart_url.split(".jpg");
-					String new_fanart_url = null;
-					new_fanart_url = split[0] + "-218.jpg";
-					
-					
-					Show.put("title", title);
-					Show.put("overview", overview);
-					Show.put("tele_detail", Telecast_detail);
-					Show.put("image_url", new_img_url);
-					Show.put("backImage", new_fanart_url);
-
-					Log.d("test", (title + overview + pos_url).toString());
-					showList.add(Show);
-				}
-
-			} catch (JSONException e) {
-				e.printStackTrace();
-				Log.d("JSON Exception1", "Error is in Listview Loader");
-			} catch (Exception e) {
-				e.printStackTrace();
-				Log.d("JSON Exception1", "Error is in Listview Loader");
-			}
-			return showList;
+			JsonParser jParser = new JsonParser(url[0], 1);
+			return jParser.getTrendingListData( );
 		}
 
 		@Override
-		protected void onPostExecute(ArrayList<HashMap<String, Object>> result) {
-			mListView.setAdapter(new TrendingShowsAdapter(getActivity() , R.layout.trending_list_item, result));
-			
+		protected void onPostExecute(ArrayList<HashMap<String, Object>> result){
+			mListView.setAdapter(new TrendingShowsAdapter(getActivity( ),
+			        R.layout.trending_list_item, result));
+
+			show_list = result;
+
 		}
-		
 	}
-	
-	
 
 }

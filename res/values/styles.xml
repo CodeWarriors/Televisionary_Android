@@ -2,13 +2,13 @@
 
     <!--
         Base application theme, dependent on API level. This theme is replaced
-        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
     -->
     <style name="AppBaseTheme" parent="android:Theme.Light">
         <!--
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
+            backward-compatibility can go here.
         -->
     </style>
 
@@ -16,10 +16,114 @@
     <style name="AppTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
-    <style name="behindMenuScroll">
+
+    <!-- TELEVISIONARY THEME -->
+
+    <style name="Theme.Televisionary" parent="android:Theme">
+        <item name="android:windowNoTitle">false</item>
+        <item name="android:windowBackground">@color/televisionary_bg_dark</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:colorBackground">@android:color/transparent</item>
+        <item name="android:listViewStyle">@style/ListViewTeleviionary</item>
+        <item name="android:windowTitleBackgroundStyle">@style/TitleBarTelevisionary</item>
+        <item name="android:checkboxStyle">@style/CheckBoxTelevisionary</item>
+        <item name="android:editTextStyle">@style/EditTextTelevisionary</item>
+        <item name="android:buttonStyle">@style/ButtonTelevisionary</item>
+        <item name="android:radioButtonStyle">@style/RadioButtonTelevisionary</item>
+        <item name="android:buttonStyleToggle">@style/ToggleButtonTelevisionary</item>
+        <item name="android:ratingBarStyle">@style/RatingBarTelevisionary</item>
+    </style>
+
+    <style name="ListViewTeleviionary" parent="android:Widget.ListView">
+        <item name="android:listSelector">@drawable/list_selector_televisionary</item>
+        <item name="android:divider">@drawable/divider_televisionary</item>
+        <item name="android:dividerHeight">1dp</item>
+    </style>
+
+    <style name="ProgressBarTelevisionary" parent="android:Widget.ProgressBar.Horizontal">
+        <item name="android:progressDrawable">@drawable/progress_horizontal_televisionary</item>
+        <item name="android:indeterminateDrawable">@drawable/progress_indeterminate_horizontal_televisionary</item>
+        <item name="android:minHeight">16dip</item>
+        <item name="android:maxHeight">16dip</item>
+    </style>
+
+    <style name="TitleBarTelevisionary">
+        <item name="android:textColor">@color/txt_dark_gray</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:background">@color/televisionary_bg_dark</item>
+    </style>
+
+    <style name="EditTextTelevisionary" parent="android:Widget.EditText">
+        <item name="android:background">@drawable/edit_text_televisionary_dark</item>
+        <item name="android:textColor">@color/txt_light_gray</item>
+    </style>
+
+    <style name="CheckBoxTelevisionary" parent="android:Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/btn_check_televisionary_dark</item>
+    </style>
+
+    <style name="ButtonTelevisionary" parent="android:Widget.Button">
+        <item name="android:textColor">@color/txt_dark_gray</item>
+        <item name="android:background">@drawable/btn_default_televisionary_dark</item>
+    </style>
+
+    <style name="RadioButtonTelevisionary" parent="android:Widget.CompoundButton.RadioButton">
+        <item name="android:button">@drawable/btn_radio_televisionary_dark</item>
+    </style>
+
+    <style name="ToggleButtonTelevisionary" parent="android:Widget.Button.Toggle">
+        <item name="android:background">@drawable/btn_toggle_televisionary_dark</item>
+    </style>
+
+    <style name="RatingBarTelevisionary" parent="android:Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/ratingbar_small_televisionary_dark</item>
+        <item name="android:indeterminateDrawable">@drawable/ratingbar_small_televisionary_dark</item>
+        <item name="android:minHeight">18dip</item>
+        <item name="android:maxHeight">18dip</item>
+        <item name="android:isIndicator">true</item>
+    </style>
+
+    <style name="DivideHorizonatal">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dip</item>
+        <item name="android:background">@color/txt_dark_gray</item>
+    </style>
+
+    <style name="DividerVertical">
+        <item name="android:layout_width">1dip</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@color/txt_dark_gray</item>
+    </style>
+
+    <style name="DivideHorizonatalGreen">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">2dip</item>
+        <item name="android:background">@color/txt_green</item>
+    </style>
+    <style name="ActionBarIconStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">2dip</item>
+        <item name="android:layout_marginBottom">2dip</item>
+        <item name="android:clickable">true</item>
+        <item name="android:background">@drawable/btn_actionbar_televisionary</item>
+    </style>
+    <style name="TextSmallTelevisionary">
+    </style>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+       <style name="behindMenuScroll">
         <item name="android:layout_width">240dp</item>
         <item name="android:layout_height">fill_parent</item>
-        <item name="android:background">#333333</item>
+        <item name="android:background">@drawable/bg_striped</item>
     </style>
     <style name="behindMenuScrollContent">
         <item name="android:layout_width">fill_parent</item>
@@ -34,10 +138,6 @@
         <item name="android:layout_marginBottom">8dp</item>
         <item name="android:textSize">18sp</item>
         <item name="android:textColor">#FFFFFF</item>
-    </style>
-    
-    <style name="Sherlock.__Widget.Holo.ListView" parent="android:Widget.ListView">
-        <item name="android:listSelector">@drawable/abs__list_selector_holo_dark</item>
     </style>
 
 </resources>

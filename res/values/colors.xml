@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="televisionary_light_green">#99CC00</color>
+
+    
     <color name="txt_white">#ffffff</color>
+    <color name="txt_light_gray">#b1b1b1</color>
+    <color name="txt_dark_gray">#484848</color>
+    <color name="txt_green">#75a801</color>
+    
+    <color name="televisionary_light_green">#99CC00</color>
     <color name="televisionary_dark_green">#669900</color>
+    <color name="televisionary_bg_dark">#1d1d1d</color>
+    <color name="televisionary_bg_light">#e1e1e1</color>
 
 </resources>

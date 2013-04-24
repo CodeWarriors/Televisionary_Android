@@ -3,7 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-     >
+    android:showDividers="middle" >
+
+    
 
     <TextView
         android:id="@+id/textView1"
@@ -12,13 +14,13 @@
         android:text="Trending"
         android:textColor="@color/televisionary_light_green"
         android:textSize="30sp" />
-
+    
     <ListView
         android:id="@+id/show_list_view"
+        style="@style/ListViewTeleviionary"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" 
-        style="@style/Sherlock.__Widget.Holo.ListView"
-       >
+        android:layout_height="wrap_content"
+        >
     </ListView>
 
 </LinearLayout>
