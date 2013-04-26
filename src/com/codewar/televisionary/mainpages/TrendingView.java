@@ -68,10 +68,10 @@ public class TrendingView extends Fragment{
 			getLink.setTrending_shows( );
 			String strUrl = getLink.getTrending_shows( );
 			DownloadTask downloadTask = new DownloadTask( );
-			
+
 			downloadTask.execute(strUrl);
-			//for testing
-			//downloadTask.execute("http://192.248.12.9/~114064N/files/shows.json");
+			// for testing
+			// downloadTask.execute("http://192.248.12.9/~114064N/files/shows.json");
 		} else{
 			Toast.makeText(getActivity( ).getApplicationContext( ),
 			        "Network is Not Available.. Work in Offline Mode", 15000).show( );
@@ -147,7 +147,7 @@ public class TrendingView extends Fragment{
 	private class OfflineTask extends
 	        AsyncTask<String, Integer, ArrayList<HashMap<String, Object>>>{
 
-		String		data		  = null;
+		String	data	= null;
 
 		@Override
 		protected ArrayList<HashMap<String, Object>> doInBackground(String... url){

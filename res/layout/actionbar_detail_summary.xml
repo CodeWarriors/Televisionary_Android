@@ -60,6 +60,8 @@
             style="@style/ActionBarIconStyle"
             android:layout_weight="1"
             android:src="@drawable/action_settings" />
+
+
     </LinearLayout>
 
 </RelativeLayout>

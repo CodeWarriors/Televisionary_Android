@@ -10,10 +10,12 @@ import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Toast;
 
 import com.codewar.televisionary.mainpages.OverviewView;
 import com.codewar.televisionary.mainpages.RecentfeedsView;
 import com.codewar.televisionary.mainpages.TrendingView;
+import com.codewar.televisionary.sessions.SessionManager;
 import com.codewar.televisionary.tasks.NetworkTestTask;
 import com.codewar.televisionary.tasks.ShowAlertDialog;
 import com.navdrawer.SimpleSideDrawer;
@@ -24,11 +26,15 @@ public class TelevisionaryMainView extends FragmentActivity{
 	private ViewPager	mPager;
 	private SimpleSideDrawer mNav;
 
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.televisionary_main_view);
-
+		
+	
+		 
+		 
 		mAdapter = new MyAdapter(getSupportFragmentManager( ));
 		mPager = (ViewPager) findViewById(R.id.pager);
 		mPager.setAdapter(mAdapter);

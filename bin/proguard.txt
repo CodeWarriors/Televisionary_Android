@@ -1,0 +1,20 @@
+# view res/layout/detail_main_view.xml #generated:20
+# view res/layout/televisionary_main_view.xml #generated:18
+-keep class android.support.v4.view.PagerTabStrip { <init>(...); }
+
+# view res/layout/detail_main_view.xml #generated:15
+# view res/layout/televisionary_main_view.xml #generated:12
+-keep class android.support.v4.view.ViewPager { <init>(...); }
+
+# view AndroidManifest.xml #generated:36
+-keep class com.codewar.televisionary.DetailViewMain { <init>(...); }
+
+# view AndroidManifest.xml #generated:29
+-keep class com.codewar.televisionary.TelevisionaryMainView { <init>(...); }
+
+# view AndroidManifest.xml #generated:43
+-keep class com.codewar.televisionary.mainpages.LoginActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:20
+-keep class com.codewar.televisionary.splash.SplashScreen { <init>(...); }
+

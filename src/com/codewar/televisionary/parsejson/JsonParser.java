@@ -19,6 +19,7 @@ public class JsonParser{
 	private ArrayList<HashMap<String, Object>>	showList	           = new ArrayList<HashMap<String, Object>>( );
 	private ArrayList<HashMap<String, Object>>	seasonList	           = new ArrayList<HashMap<String, Object>>( );
 	private ArrayList<String>	               details	               = new ArrayList<String>( );
+	private HashMap<String, Object>	               profileDetails	       = new HashMap<String, Object>( );
 
 	private final static String	               SHOW_TITLE	           = "title";
 	private final static String	               SHOW_YEAR	           = "year";
@@ -45,14 +46,39 @@ public class JsonParser{
 	private final static String	               SHOW_GENRES	           = "genres";
 	private final static String	               SHOW_RATINGS	           = "ratings";
 	private final static String	               SHOW_IMAGES	           = "images";
-	
-	
-	//season list
-	private final static String SEASON_NO = "season";
-	private final static String SEASON_EPISODE_COUNT = "episodes";
-	private final static String SEASON_URL = "url";
-	private final static String SEASON_POSTER = "poster";
 
+	// season list
+	private final static String	               SEASON_NO	           = "season";
+	private final static String	               SEASON_EPISODE_COUNT	   = "episodes";
+	private final static String	               SEASON_URL	           = "url";
+	private final static String	               SEASON_POSTER	       = "poster";
+
+	//profile details
+	private final static String LOGIN_STATUS = "status";
+	private final static String LOGIN_ERROR = "error";
+	private final static String LOGIN_MESSAGE = "message";
+	private final static String PROFILE = "profile";
+	private final static String PROFILE_USERNAME = "username";
+	private final static String PROFILE_FULLNAME = "fullname";
+	private final static String PROFILE_GENDER = "gender";
+	private final static String PROFILE_AGE = "age";
+	private final static String PROFILE_LOCATION = "location";
+	private final static String PROFILE_ABOUT ="about";
+	private final static String PROFILE_JOINED  = "joined";
+	private final static String PROFILE_LAST_LOGIN  ="last_login";
+	private final static String PROFILE_AVATAR = "avatar";
+	private final static String PROFILE_URL = "url";
+	private final static String PROFILE_VIP  = "vip";
+	private final static String ACCOUNT = "account";
+	private final static String ACCOUNT_TIMEZONE = "timezone";
+	private final static String ACCOUNT_USE_24HR = "use_24hr";
+	private final static String ACCOUNT_PROTECTED = "protected";//there're some more functions 
+	private final static String SHARING_TEXT ="sharing_text";
+	private final static String SHARING_TEXT_WATCHING = "watching";
+	private final static String SHARING_TEXT_WATCHED = "watched";
+	
+	
+	
 	public JsonParser(String Jsondata, int key){
 
 		switch(key){
@@ -64,10 +90,73 @@ public class JsonParser{
 			break;
 		case 3:
 			setSeasonData(Jsondata);
+		case 4:
+			setProfileDetails(Jsondata);
 		default:
 			break;
 		}
 	}
+	
+	
+
+	public void setProfileDetails(String _jsondata){
+
+		JSONObject jLoginObject;
+
+
+		try{
+			jLoginObject = new JSONObject(_jsondata);
+			
+			
+			if(jLoginObject.get(LOGIN_STATUS).toString( ).equals("success") ){
+				JSONObject jProfile = jLoginObject.getJSONObject(PROFILE);
+				JSONObject jAccount = jLoginObject.getJSONObject(ACCOUNT);
+				JSONObject jSharingText = jLoginObject.getJSONObject(SHARING_TEXT);
+
+				profileDetails.put(LOGIN_STATUS, jLoginObject.get(LOGIN_STATUS));
+				profileDetails.put(LOGIN_MESSAGE, jLoginObject.get(LOGIN_MESSAGE));
+				
+				profileDetails.put(PROFILE_USERNAME, jProfile.get(PROFILE_USERNAME));
+				profileDetails.put(PROFILE_FULLNAME, jProfile.get(PROFILE_FULLNAME));
+				profileDetails.put(PROFILE_GENDER, jProfile.get(PROFILE_GENDER));
+				profileDetails.put(PROFILE_AGE, jProfile.get(PROFILE_AGE));
+				profileDetails.put(PROFILE_LOCATION, jProfile.get(PROFILE_LOCATION));
+				profileDetails.put(PROFILE_ABOUT, jProfile.get(PROFILE_ABOUT));
+				profileDetails.put(PROFILE_JOINED, jProfile.get(PROFILE_JOINED));
+				profileDetails.put(PROFILE_LAST_LOGIN, jProfile.get(PROFILE_LAST_LOGIN));
+				profileDetails.put(PROFILE_AVATAR, jProfile.get(PROFILE_AVATAR));
+				profileDetails.put(PROFILE_URL, jProfile.get(PROFILE_URL));
+				profileDetails.put(PROFILE_VIP, jProfile.get(PROFILE_VIP));
+				
+				profileDetails.put(ACCOUNT_TIMEZONE, jAccount.get(ACCOUNT_TIMEZONE));
+				profileDetails.put(ACCOUNT_USE_24HR, jAccount.get(ACCOUNT_USE_24HR));
+				profileDetails.put(ACCOUNT_PROTECTED, jAccount.get(ACCOUNT_PROTECTED));
+				
+				profileDetails.put(SHARING_TEXT_WATCHED, jSharingText.get(SHARING_TEXT_WATCHED));
+				profileDetails.put(SHARING_TEXT_WATCHING, jSharingText.get(SHARING_TEXT_WATCHING));
+			}else{
+				profileDetails.put(LOGIN_STATUS, jLoginObject.get(LOGIN_STATUS));
+				profileDetails.put(LOGIN_ERROR, jLoginObject.get(LOGIN_ERROR));
+			}
+			
+			
+
+		} catch(JSONException e){
+			e.printStackTrace( );
+
+		} catch(Exception e){
+			e.printStackTrace( );
+
+		}
+	}
+
+	public HashMap<String , Object> getProfileDetails( ){
+		return profileDetails;
+	}
+	
+	
+	
+	
 
 	public void setTrendingListData(String _jsondata){
 
@@ -189,7 +278,6 @@ public class JsonParser{
 		Log.d("Received Json Data", _jsondata);
 		try{
 			jSeasonListArray = new JSONArray(_jsondata);
-			
 
 			for(int i = 0; i < jSeasonListArray.length( ); i++){
 				HashMap<String, Object> Season = new HashMap<String, Object>( );

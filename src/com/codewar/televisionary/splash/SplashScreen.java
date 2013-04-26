@@ -9,6 +9,7 @@ import android.view.WindowManager;
 
 import com.codewar.televisionary.R;
 import com.codewar.televisionary.TelevisionaryMainView;
+import com.codewar.televisionary.mainpages.LoginActivity;
 
 public class SplashScreen extends Activity {
 
@@ -35,7 +36,7 @@ public class SplashScreen extends Activity {
 			
 			@Override
 			public void onFinish() {
-				Intent i = new Intent(getBaseContext(), TelevisionaryMainView.class);
+				Intent i = new Intent(getBaseContext(), LoginActivity.class);
 				startActivity(i);
 				finish();
 				
